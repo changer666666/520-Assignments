@@ -9,6 +9,7 @@ static double * stack;
 static int initialized = 0;
 static int top = 0;
 static RPN_ERROR error = OK;
+static int stackSize = 0;
 
 void rpn_show() {
     printf("--->\n");
@@ -20,19 +21,25 @@ void rpn_show() {
 
 void rpn_init() {
   if ( ! initialized ) {
-      stack = (double *) calloc(INITIAL_STACK_SIZE, sizeof(double));
+      stackSize = INITIAL_STACK_SIZE;
+      stack = (double *) calloc(stackSize, sizeof(double));
       initialized = 1;
       top = 0;
       error = OK;
+      printf("%u\n",stack);
   }
 }
 
 void rpn_push(double x) {
     if ( !initialized ) {
         error = NOT_INITIALIZED_ERROR;
-    } else {
+    } else if (top < stackSize) {
         stack[top] = x;
         top++;
+    } else {
+        stackSize *= 2;
+        stack = (double *) realloc(stack, stackSize * sizeof(double));
+        printf("%u\n",stack);
     }
 }
 
@@ -98,4 +105,25 @@ void rpn_free() {
         initialized = 0;
     }
     error = OK;
+}
+
+void rpn_div() {
+    if ( !initialized ) {
+        error = NOT_INITIALIZED_ERROR;
+    } else if ( top < 2 ) {
+        error = BINARY_ERROR;
+    } else if (stack[top-1] == 0) {
+        error = DIVIDE_BY_ZERO_ERROR;
+    } else {    
+        double x = stack[top-2] / stack[top-1];
+        if ( x == INFINITY || x == -INFINITY ) {
+            error = OVERFLOW_ERROR;
+        } 
+        top--;
+        stack[top-1] = x;
+    }
+}
+
+int getStackSize() {
+    return stackSize;
 }

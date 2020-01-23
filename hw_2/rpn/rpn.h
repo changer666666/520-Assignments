@@ -9,7 +9,8 @@ typedef enum {
     POP_ERROR, 
     UNARY_ERROR, 
     BINARY_ERROR, 
-    OVERFLOW_ERROR
+    OVERFLOW_ERROR,
+    DIVIDE_BY_ZERO_ERROR
 } RPN_ERROR;
 
 void rpn_init();
@@ -20,5 +21,7 @@ void rpn_multiply();
 double rpn_pop();
 RPN_ERROR rpn_error();
 void rpn_free();
+void rpn_div();
+int getStackSize();
 
 #endif
