@@ -334,4 +334,15 @@ namespace {
         DynamicArray_destroy(da);
         DynamicArray_destroy(a);
     }
+
+    // TEST(DynamicArray, PushFront2) {
+    //     DynamicArray * da = DynamicArray_new();
+    //     double x = 0;
+    //     while ( x < 10 ) {zzz
+    //         DynamicArray_push_front(da, x);  
+    //         x += 0.25;
+    //     }
+    //     ASSERT_NEAR(DynamicArray_get(da,0), 9.75, 0.00001);
+    //     DynamicArray_destroy(da);          
+    // } 
 }

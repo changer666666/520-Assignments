@@ -10,19 +10,19 @@ SRCDIR      := .
 INCDIR      := .
 BUILDDIR    := ./build
 TARGETDIR   := ./bin
-SRCEXT      := c
+SRCEXT      := cc
 
 #Flags, Libraries and Includes
-CFLAGS      := # -fsanitize=address -ggdb
-LIB         := -lgtest -lpthread # -lasan
+CFLAGS      := -ggdb
+LIB         := -lgtest -lpthread 
 INC         := -I$(INCDIR)
 INCDEP      := -I$(INCDIR)
 
 #Files
 DGENCONFIG  := docs.config
 HEADERS     := $(wildcard *.h)
-SOURCES     := $(wildcard *.c)
-OBJECTS     := $(patsubst %.c, $(BUILDDIR)/%.o, $(notdir $(SOURCES)))
+SOURCES     := $(wildcard *.cc)
+OBJECTS     := $(patsubst %.cc, $(BUILDDIR)/%.o, $(notdir $(SOURCES)))
 
 #Defauilt Make
 all: directories $(TARGETDIR)/$(TARGET) 
