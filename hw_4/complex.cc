@@ -4,7 +4,7 @@
 
 double Complex::magnitude() const {
 
-    return sqrt(re*re + im*im);
+    return sqrt(real * real + imaginary * imaginary);
 
 }
 
@@ -14,12 +14,12 @@ bool operator<(const Complex& a, const Complex& b) {
 
 }
 
-double Complex::getRe() const {
-    return re;
+double Complex::re() const {
+    return real;
 }
 
-double Complex::getIm() const {
-    return im;
+double Complex::im() const {
+    return imaginary;
 }
 
 // void Complex::setRe(const double a) const {
@@ -31,7 +31,7 @@ double Complex::getIm() const {
 // }
 
 Complex Complex::conjugate() const {
-    Complex res(getRe(), -getIm());
+    Complex res(re(), -im());
     return res;
 }
 
@@ -47,17 +47,17 @@ Complex Complex::conjugate() const {
 
 //(a+bi)(c+di)=(ac-bd)+(ad+bc)i
 Complex operator*(const Complex& a, const Complex& b) {
-    Complex res(a.getRe() * b.getRe() - a.getIm() * b.getIm(), a.getRe() * b.getIm() + a.getIm() * b.getRe());
+    Complex res(a.re() * b.re() - a.im() * b.im(), a.re() * b.im() + a.im() * b.re());
     return res;
 }
 
-Complex operator+(const Complex& a, const Complex& b) {
-    Complex res(a.getRe() + b.getRe(), a.getIm() + b.getIm());
+Complex Complex::operator+(const Complex& other) {
+    Complex res(re() + other.re(), im() + other.im());
     return res;
 }
 
 bool operator==(const Complex& a, const Complex& b) {
-    if (fabs(a.getRe() - b.getRe()) < DBL_EPSILON && fabs(a.getIm() - b.getIm()) < DBL_EPSILON) {
+    if (fabs(a.re() - b.re()) < DBL_EPSILON && fabs(a.im() - b.im()) < DBL_EPSILON) {
         return true;
     } 
     return false;
