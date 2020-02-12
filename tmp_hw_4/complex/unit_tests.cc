@@ -29,11 +29,11 @@ namespace {
     TEST(Examples,GetMethod) {
         Complex x(1,2);
         Complex y(3);
-        EXPECT_DOUBLE_EQ(x.getRe(), 1);
-        EXPECT_DOUBLE_EQ(x.getIm(), 2);
+        EXPECT_DOUBLE_EQ(x.re(), 1);
+        EXPECT_DOUBLE_EQ(x.im(), 2);
 
-        EXPECT_DOUBLE_EQ(y.getRe(), 3);
-        EXPECT_DOUBLE_EQ(y.getIm(), 0);
+        EXPECT_DOUBLE_EQ(y.re(), 3);
+        EXPECT_DOUBLE_EQ(y.im(), 0);
     }
 
     TEST(Examples,Conjugate) {
@@ -41,12 +41,12 @@ namespace {
         Complex y(3);
 
         Complex a = x.conjugate();
-        EXPECT_DOUBLE_EQ(a.getRe(), 1);
-        EXPECT_DOUBLE_EQ(a.getIm(), -2);
+        EXPECT_DOUBLE_EQ(a.re(), 1);
+        EXPECT_DOUBLE_EQ(a.im(), -2);
 
         Complex b = y.conjugate();
-        EXPECT_DOUBLE_EQ(b.getRe(), 3);
-        EXPECT_DOUBLE_EQ(b.getIm(), 0);
+        EXPECT_DOUBLE_EQ(b.re(), 3);
+        EXPECT_DOUBLE_EQ(b.im(), 0);
     }
 
     TEST(Examples,Times) {
@@ -54,8 +54,8 @@ namespace {
         Complex y(7,-9);
 
         Complex a = x * y;
-        EXPECT_DOUBLE_EQ(a.getRe(), 39);
-        EXPECT_DOUBLE_EQ(a.getIm(), -13);
+        EXPECT_DOUBLE_EQ(a.re(), 39);
+        EXPECT_DOUBLE_EQ(a.im(), -13);
     }
 
     TEST(Examples,Plus) {
@@ -63,8 +63,8 @@ namespace {
         Complex y(7,-9);
 
         Complex a = x + y;
-        EXPECT_DOUBLE_EQ(a.getRe(), 10);
-        EXPECT_DOUBLE_EQ(a.getIm(), -7);
+        EXPECT_DOUBLE_EQ(a.re(), 10);
+        EXPECT_DOUBLE_EQ(a.im(), -7);
     }
 
     TEST(Examples,Equal) {
